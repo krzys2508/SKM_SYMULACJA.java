@@ -1,0 +1,4 @@
+rootProject.name = 'SKM-Symulator'
+include 'Simulation'
+include 'CLient'
+
