@@ -1,14 +1,14 @@
 package pjwstk.pl.edu.Simulation.models;
 
-import javax.swing.text.Segment;
-import java.lang.reflect.Array;
 import java.util.List;
 
 public class Segments {
+    private int segmentId; // dla passazera hhhhhhhhhhhhhhhhhhhhhh
     private int capacity;
     List <Passenger> people;
-    public Segments(int capacity){
+    public Segments(int capacity, int segmentId){
         this.capacity=capacity;
+        this.segmentId=segmentId;
     }
 
     public int getCapacity() {
@@ -17,5 +17,10 @@ public class Segments {
 
     public List<Passenger> getPeople() {
         return people;
+    }
+
+    public int getSegmentId()
+    {
+        return segmentId;
     }
 }

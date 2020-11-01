@@ -1,52 +1,101 @@
 package pjwstk.pl.edu.Simulation.models;
 
+import java.util.Arrays;
+import java.util.List;
 import java.util.Random;
 
-public enum Station {
-    GDYNIAGLOWNA,
-    GDYNIAWZGSWMAKSYMILIANA,
-    GDYNIAREDLOWO,
-    GDYNIAORLOWO,
-    SOPOTKAMIENNYPOTOK,
-    SOPOT,
-    SOPOTWYSCIGI,
-    GDANSKZABIANKA,
-    GDANSKOLIWA,
-    GDANSKPRZYMORZE,
-    GDANSKZASPA,
-    GDANSKWRZESZCZ,
-    GDANSKPOLITECHNIKA,
-    GDANSKSTOCZNIA,
-    GDANSKGDLOWNY,
-    GDANSKSRODMIESCIE;
-    private static Station[] stations = values();
+public class Station
+{
 
-    public  boolean isLast() {
-        return this.ordinal() == stations.length - 1;
-    }
+  List<String> stationList = Arrays.asList("GDYNIA GLOWNA", "GDYNIA WZG SW MAKSYMILIANA", "GDYNIA REDLOWO", "GDYNIA ORLOWO",
+      "SOPOT KAMIENNY POTOK", "SOPOT", "SOPOT WYSCIGI", "GDANSK ZABIANKA", "GDANSK OLIWA", "GDANSK PRZYMORZE",
+      "GDANSK ZASPA", "GDANSK WRZESZCZ", "GDANSK POLITECHNIKA", "GDANSK STOCZNIA", "GDANSK GDLOWNY",
+      "GDANSK SRODMIESCIE");
+  boolean directionForward;
+  String currentStation = "";
 
-    public boolean isFirst() {
-        return this.ordinal() == 0;
-    }
 
-    public  int setDirectionBacwards() {
-        return this.ordinal();
-    }
+  public Station()
+  {
+    directionForward = true;
+    currentStation = randomStation();
+  }
 
-    public int setDirectionForward() {
-        return this.ordinal() + 1;
-    }
+  public Station(String StationName)
+  {
+    this.directionForward = true;
+    this.currentStation = StationName;
+  }
 
-    public  Station move() {
-        if (isLast()) {
-            setDirectionBacwards();
-        } else if (isFirst()) {
-            setDirectionForward();
-        }
-        return stations[this.ordinal()];
+  public boolean isLast()
+  {
+    return getCurrentStation().equals(stationList.get(stationList.size() - 1));
+  }
+
+  public boolean isFirst()
+  {
+    return getCurrentStation().equals(stationList.get(0));
+  }
+
+  public void goBacwards()
+  {
+    if (isFirst()) {
+      setCurrentStation(stationList.get(0));
     }
-    public static Station randomStation (){
-        Random random = new Random();
-        return stations[random.nextInt(15)];
+    setCurrentStation( stationList.get(stationList.indexOf(getCurrentStation()) - 1));
+  }
+
+  public void goForward()
+  {
+    if (isLast()) {
+      setCurrentStation( stationList.get(stationList.size() - 1));
     }
+    setCurrentStation( stationList.get(stationList.indexOf(getCurrentStation()) + 1));
+  }
+
+
+  public void move()
+  {
+    if (directionForward) {
+      if (isLast()) {
+        setDirectionForward(false);
+        goBacwards();
+      }
+      goForward();
+    } else {
+      if (isFirst()) {
+        setDirectionForward(true);
+        goForward();
+      }
+      goBacwards();
+    }
+  }
+
+
+  public String randomStation()
+  {
+    Random random = new Random();
+    return stationList.get(random.nextInt(stationList.size()));
+  }
+
+  public String getCurrentStation()
+  {
+    return currentStation;
+  }
+
+  public void setCurrentStation(String currentStation)
+  {
+    this.currentStation = currentStation;
+  }
+
+  public boolean isDirectionForward()
+  {
+    return directionForward;
+  }
+
+  public void setDirectionForward(boolean directionForward)
+  {
+    this.directionForward = directionForward;
+
+  }
 }

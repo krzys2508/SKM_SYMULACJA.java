@@ -1,20 +1,30 @@
 package pjwstk.pl.edu.Simulation.models;
 
 
-import com.github.javafaker.Faker;
+import java.util.Random;
 
 
 public class Passenger {
-    Faker faker = new Faker();
-    Station endStation;
+    String name;
+    String surname;
+    int segmentID;
+    String endStation;
 
-    public Passenger() {
-        String name = faker.name().firstName().toString();
-        String surname = faker.name().lastName().toString();
-        Station endStation = Station.randomStation();
+    public Passenger(int segmentId) {
+        Random random = new Random();
+        int los= random.nextInt(300);
+        this.segmentID = segmentId;
+        this.name = "Mis"+los;
+        this.surname = "Pys"+los;
+        this.endStation = new Station().getCurrentStation();
     }
 
-    public Station getEndStation() {
+    public String getEndStation() {
         return endStation;
+    }
+
+    public int getSegmentID()
+    {
+        return segmentID;
     }
 }
