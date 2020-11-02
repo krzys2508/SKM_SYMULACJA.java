@@ -30,8 +30,6 @@ public class Train {
     public List<Passenger> addPassengers() {
         int amountOfNewPassengers = 0;
         for (int i = 0; i < segments.size(); i++) {
-            //segments.get(i).getCapacity();
-            // sprawdz capacity- ilosc pasazerow w segmencie=  ilosc wolnych miejsc
             int freeSeatsInSeg = segments.get(i).getCapacity() - getAmountOfPassangersInSeg(segments.get(i).getSegmentId());
             if (freeSeatsInSeg > 0) {
                 int amountOfNewPassengersInSeg = random.nextInt(freeSeatsInSeg);
@@ -59,23 +57,19 @@ public class Train {
     }
 
 
-    public boolean isFull() {
-        for (Segments segment : segments) {
-            if (segment.getPeople().size() < segment.getCapacity()) {
-                return true;
-            }
-        }
-        return false;
-    }
+//    public boolean isFull() {
+//        for (Segments segment : segments) {
+//            if (segment.getPeople().size() < segment.getCapacity()) {
+//                return true;
+//            }
+//        }
+//        return false;
+//    }
 
     public String printCurrAmountPassangers() {
         return " Train passengers#:" + passengers.size();
     }
 
-
-    /**
-     * @return
-     */
     public List<Passenger> leaveTrain() {
         for (int i = 0; i < passengers.size(); i++) {
             if (station.getCurrentStation().equals(passengers.get(i).getEndStation())) {
@@ -95,5 +89,9 @@ public class Train {
             percentageInSegment = (1 * getAmountOfPassangersInSeg(i) / segments.get(i).getCapacity());
         }
         return percentageInSegment;
+    }
+
+    public List<Segments> getSegments() {
+        return segments;
     }
 }

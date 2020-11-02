@@ -17,19 +17,24 @@ public class TrainPassengersController {
     @Autowired
     public TrainPassengersController(@Value("${envnoTrains}") final int noTrains, @Value("${envnoSegments}") final int noSegments, @Value("${envnoCapacity}") final int noCapacity) {
         simulation = new Simulation(noTrains, noSegments, noCapacity);
+        System.out.println(simulation.getSkms());
     }
 
     @GetMapping("/trains")
     public List<Train> trains() {
         return simulation.getSkms();
     }
+//    @GetMapping("/trains")
+//    public String trains() {
+//        return simulation.getJsonStringStatus();
+//    }
 
     @GetMapping("/movement")
     public void move() {
         simulation.move();
     }
     @GetMapping ("/id")
-    public List <Object> skm(){
+    public List <Integer> skm(){
         return simulation.getId();
     }
 

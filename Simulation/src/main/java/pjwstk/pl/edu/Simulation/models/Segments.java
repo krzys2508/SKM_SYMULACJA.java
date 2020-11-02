@@ -3,12 +3,13 @@ package pjwstk.pl.edu.Simulation.models;
 import java.util.List;
 
 public class Segments {
-    private int segmentId; // dla passazera hhhhhhhhhhhhhhhhhhhhhh
+    private int segmentId;
     private int capacity;
-    List <Passenger> people;
-    public Segments(int capacity, int segmentId){
-        this.capacity=capacity;
-        this.segmentId=segmentId;
+    List<Passenger> people;
+
+    public Segments(int capacity, int segmentId) {
+        this.capacity = capacity;
+        this.segmentId = segmentId;
     }
 
     public int getCapacity() {
@@ -19,8 +20,7 @@ public class Segments {
         return people;
     }
 
-    public int getSegmentId()
-    {
+    public int getSegmentId() {
         return segmentId;
     }
 }
