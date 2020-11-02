@@ -87,15 +87,11 @@ public class Train {
         return segments;
     }
 
-    //decreasing number of passengers in segments by number of leavers
+
     public void removePassengersInSegment(List<Passenger> leavers) {
         for (int i = 0; i < segments.size(); i++) {
             int noLeaversInSegment = 0;
-//            for (int j = 0; j < leavers.size(); j++) {
-//                if (leavers.get(j).getSegmentID() == i) {
-//                    noLeaversInSegment++;
-//                }
-//            }
+
             for (Passenger leaver : leavers) {
                 if (leaver.getSegmentID() == i) {
                     noLeaversInSegment++;

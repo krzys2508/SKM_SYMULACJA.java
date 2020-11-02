@@ -14,9 +14,8 @@ public class Passenger {
     Faker faker = new Faker();
 
     public Passenger(int segmentId) {
-        Random random = new Random();
         this.segmentID = segmentId;
-        this.name =faker.name().firstName();
+        this.name = faker.name().firstName();
         this.surname = faker.name().lastName();
         this.endStation = new Station().getCurrentStation();
     }
@@ -25,8 +24,7 @@ public class Passenger {
         return endStation;
     }
 
-    public int getSegmentID()
-    {
+    public int getSegmentID() {
         return segmentID;
     }
 }
