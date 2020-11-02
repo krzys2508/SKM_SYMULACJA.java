@@ -12,61 +12,51 @@ public class Train {
     private List<Passenger> leavers = new ArrayList();
     Random random = new Random();
 
-    public Train(List<Segments> segments, int name)
-    {
+    public Train(List<Segments> segments, int name) {
         this.segments = segments;
         this.name = name;
         this.station = new Station();
     }
 
-    public void go()
-    {
+    public void go() {
         this.station.move();
     }
 
-    public Station getStation()
-    {
+    public Station getStation() {
         return station;
     }
 
 
-    public List<Passenger> addPassengers()
-    {
-        int amountOfNewPassengers=0;
+    public List<Passenger> addPassengers() {
+        int amountOfNewPassengers = 0;
         for (int i = 0; i < segments.size(); i++) {
             //segments.get(i).getCapacity();
             // sprawdz capacity- ilosc pasazerow w segmencie=  ilosc wolnych miejsc
             int freeSeatsInSeg = segments.get(i).getCapacity() - getAmountOfPassangersInSeg(segments.get(i).getSegmentId());
-            if ( freeSeatsInSeg > 0) {
+            if (freeSeatsInSeg > 0) {
                 int amountOfNewPassengersInSeg = random.nextInt(freeSeatsInSeg);
 
                 for (int j = 0; j < amountOfNewPassengersInSeg; j++) {
                     Passenger newPassengerInSeg = new Passenger(segments.get(i).getSegmentId());
                     passengers.add(newPassengerInSeg);
                 }
-                amountOfNewPassengers+=amountOfNewPassengersInSeg;
+                amountOfNewPassengers += amountOfNewPassengersInSeg;
             }
         }
         System.out.println("addPassengers new passengers #" + amountOfNewPassengers);
         return passengers;
     }
 
-    /**
-     * Gets amount of passangers in Segment
-     * @param segmentId
-     * @return amount of passangers
-     */
-    private int getAmountOfPassangersInSeg(int segmentId)
-    {
-        int amount=0;
+
+    private int getAmountOfPassangersInSeg(int segmentId) {
+        int amount = 0;
         for (int i = 0; i < passengers.size(); i++) {
-            if (passengers.get(i).getSegmentID()==segmentId ) {
+            if (passengers.get(i).getSegmentID() == segmentId) {
                 amount++;
             }
         }
         return amount;
     }
-
 
 
     public boolean isFull() {
@@ -78,14 +68,12 @@ public class Train {
         return false;
     }
 
-    public String printCurrAmountPassangers()
-    {
-        return " Train passengers#:" + passengers.size() ;
+    public String printCurrAmountPassangers() {
+        return " Train passengers#:" + passengers.size();
     }
 
 
     /**
-     *
      * @return
      */
     public List<Passenger> leaveTrain() {
@@ -99,5 +87,13 @@ public class Train {
 
         leavers.clear();
         return passengers;
+    }
+
+    public int toPercent() {
+        int percentageInSegment = 0;
+        for (int i = 0; i < segments.size(); i++) {
+            percentageInSegment = (1 * getAmountOfPassangersInSeg(i) / segments.get(i).getCapacity());
+        }
+        return percentageInSegment;
     }
 }
