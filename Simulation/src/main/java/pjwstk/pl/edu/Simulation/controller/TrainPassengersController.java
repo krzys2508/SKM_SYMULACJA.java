@@ -28,9 +28,9 @@ public class TrainPassengersController {
     public void move() {
         simulation.move();
     }
-    @GetMapping ('/id')
-    public List <Train> skm(){
-        return skm().
+    @GetMapping ("/id")
+    public List <Object> skm(){
+        return simulation.getId();
     }
 
 }

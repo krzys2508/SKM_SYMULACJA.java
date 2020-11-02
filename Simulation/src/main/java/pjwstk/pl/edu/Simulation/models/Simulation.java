@@ -40,6 +40,8 @@ public class Simulation {
     public List <Object> getId (){
         List <Object> skm = new ArrayList<>();
         for (int i = 0; i<skms.size();i++){
+            skm.add(skms.indexOf(i));
         }
+        return skm;
     }
 }
