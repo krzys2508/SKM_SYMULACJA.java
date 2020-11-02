@@ -5,7 +5,6 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 import pjwstk.pl.edu.Simulation.models.Simulation;
-import pjwstk.pl.edu.Simulation.models.Station;
 import pjwstk.pl.edu.Simulation.models.Train;
 
 import java.util.List;
@@ -24,10 +23,6 @@ public class TrainPassengersController {
     public List<Train> trains() {
         return simulation.getSkms();
     }
-//    @GetMapping("/trains")
-//    public String trains() {
-//        return simulation.getJsonStringStatus();
-//    }
 
     @GetMapping("/movement")
     public void move() {

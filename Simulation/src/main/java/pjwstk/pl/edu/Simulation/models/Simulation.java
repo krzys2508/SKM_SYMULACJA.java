@@ -1,11 +1,7 @@
 package pjwstk.pl.edu.Simulation.models;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
-
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 public class Simulation {
     List<Train> skms;
@@ -25,14 +21,13 @@ public class Simulation {
             skms.add(new Train(segments, name));
         }
 
-        System.out.println("Station :" + skms.get(0).getStation().getCurrentStation() + " " + skms.get(0).printCurrAmountPassangers());
-        skms.get(0).addPassengers();
-        System.out.println("Station :" + skms.get(0).getStation().getCurrentStation() + " " + skms.get(0).printCurrAmountPassangers());
+
     }
     public void move(){
         for (int i = 0; i <skms.size();i++){
             skms.get(i).leaveTrain();
             skms.get(i).addPassengers();
+
             skms.get(i).go();
             System.out.println("Station :"+skms.get(0).getStation().getCurrentStation()+" "+skms.get(0).printCurrAmountPassangers());
         }

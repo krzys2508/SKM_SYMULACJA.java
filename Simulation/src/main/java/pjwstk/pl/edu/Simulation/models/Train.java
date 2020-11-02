@@ -38,9 +38,11 @@ public class Train {
                     Passenger newPassengerInSeg = new Passenger(segments.get(i).getSegmentId());
                     passengers.add(newPassengerInSeg);
                 }
+                segments.get(i).addNoPassengers(amountOfNewPassengersInSeg);
                 amountOfNewPassengers += amountOfNewPassengersInSeg;
             }
         }
+
         System.out.println("addPassengers new passengers #" + amountOfNewPassengers);
         return passengers;
     }
@@ -56,16 +58,6 @@ public class Train {
         return amount;
     }
 
-
-//    public boolean isFull() {
-//        for (Segments segment : segments) {
-//            if (segment.getPeople().size() < segment.getCapacity()) {
-//                return true;
-//            }
-//        }
-//        return false;
-//    }
-
     public String printCurrAmountPassangers() {
         return " Train passengers#:" + passengers.size();
     }
@@ -77,8 +69,8 @@ public class Train {
             }
         }
         System.out.println("leaveTrain #" + leavers.size());
+        removePassengersInSegment(leavers);
         passengers.removeAll(leavers);
-
         leavers.clear();
         return passengers;
     }
@@ -93,5 +85,23 @@ public class Train {
 
     public List<Segments> getSegments() {
         return segments;
+    }
+
+    //decreasing number of passengers in segments by number of leavers
+    public void removePassengersInSegment(List<Passenger> leavers) {
+        for (int i = 0; i < segments.size(); i++) {
+            int noLeaversInSegment = 0;
+//            for (int j = 0; j < leavers.size(); j++) {
+//                if (leavers.get(j).getSegmentID() == i) {
+//                    noLeaversInSegment++;
+//                }
+//            }
+            for (Passenger leaver : leavers) {
+                if (leaver.getSegmentID() == i) {
+                    noLeaversInSegment++;
+                }
+            }
+            this.segments.get(i).deletePassengers(noLeaversInSegment);
+        }
     }
 }

@@ -1,26 +1,33 @@
 package pjwstk.pl.edu.Simulation.models;
 
-import java.util.List;
-
 public class Segments {
     private int segmentId;
     private int capacity;
-    List<Passenger> people;
+    int noPassengers;
 
     public Segments(int capacity, int segmentId) {
         this.capacity = capacity;
         this.segmentId = segmentId;
+        this.noPassengers = 0;
     }
 
     public int getCapacity() {
         return capacity;
     }
 
-    public List<Passenger> getPeople() {
-        return people;
+    public void addNoPassengers(int noNewPassengers) {
+        this.noPassengers += noNewPassengers;
+    }
+    public void deletePassengers (int noLeavers){
+        this.noPassengers -= noLeavers;
+    }
+
+    public int getNoPassengers() {
+        return noPassengers;
     }
 
     public int getSegmentId() {
         return segmentId;
     }
+
 }

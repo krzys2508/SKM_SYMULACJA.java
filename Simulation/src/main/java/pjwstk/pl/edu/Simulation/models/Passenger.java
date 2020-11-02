@@ -15,7 +15,6 @@ public class Passenger {
 
     public Passenger(int segmentId) {
         Random random = new Random();
-        int los= random.nextInt(300);
         this.segmentID = segmentId;
         this.name =faker.name().firstName();
         this.surname = faker.name().lastName();
