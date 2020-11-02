@@ -1,5 +1,8 @@
 package pjwstk.pl.edu.Simulation.models;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -43,5 +46,18 @@ public class Simulation {
             skm.add(skms.indexOf(i));
         }
         return skm;
+    }
+    private String toJson(Object O) {
+        ObjectMapper mapper = new ObjectMapper();
+        try {
+            return mapper.writerWithDefaultPrettyPrinter().writeValueAsString(O);
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+            return e.getMessage();
+        }
+    }
+
+    public String getJsonStringStatus() {
+        return toJson(skms);
     }
 }
