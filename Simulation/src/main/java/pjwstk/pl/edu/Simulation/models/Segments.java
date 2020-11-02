@@ -30,4 +30,7 @@ public class Segments {
         return segmentId;
     }
 
+    public double getPercentage() {
+        return (1.0*noPassengers / capacity) * 100.0;
+    }
 }
