@@ -8,8 +8,8 @@
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
-            <option value="$PROJECT_DIR$/Client" />
-            <option value="$PROJECT_DIR$/Simulation" />
+            <option value="$PROJECT_DIR$/skm-api" />
+            <option value="$PROJECT_DIR$/skm-client" />
           </set>
         </option>
       </GradleProjectSettings>
