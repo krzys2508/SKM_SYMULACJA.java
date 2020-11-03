@@ -11,7 +11,6 @@ import java.util.List;
 @RestController
 public class SkmController {
     private final String URItrains = "http://Simultation:11111/trains";
-    private final String URImove  = "http://Simulation:11111/movement";
     private final String URIid = "http://Simulation:11111/id";
 
     @GetMapping("/trains")
