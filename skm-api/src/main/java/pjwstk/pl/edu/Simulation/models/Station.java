@@ -66,6 +66,9 @@ public class Station {
             goForward();
         } else {
             if (isFirst()) {
+                for (int i = counter; i>0; i--){
+                    stay();
+                }
                 setDirectionForward(true);
                 goForward();
             }
